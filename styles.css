@@ -1,0 +1,17 @@
+h1{
+    font-family: Helvetica, serif;
+}
+
+.in{
+    color:yellow;
+
+}
+input[type=range]{
+    background: black;
+    margin-right: 20px;
+    border: solid black 1px;
+}
+output{
+    border: solid black 1px;
+    width: 120px;
+}
