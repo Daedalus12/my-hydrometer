@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <link rel="stylesheet" href="styles.css">
+<script src="update.js"></script>
+<script src="update.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <head>
     <meta charset="UTF-8">
     <title></title>
@@ -8,39 +11,63 @@
 <body>
 <h1>Hydrometer Temperature Correction</h1>
 
-<form oninput="readingOutput.value=reading.value">
-    <label for="readingID">
-        <input class=in type="range" id=readingID name="reading" step="0.002" max="1.2" min="0.98" value="1.000">
-    </label>
-    <output name="readingOutput" for="reading" >1.000</output>
-    Hydrometer Reading
-</form>
+<table class="calc">
+    <tr>
+        <td>Hydrometer Reading:</td>
+        <td>
+            <input class=in type="range" id=readingSliderID name="readingSlider"
+                   step="0.002" max="1.2" min="0.98" value="1.000"
+                   oninput="updateAllFromSlider()">
+        </td>
+        <td>
+            <input class=in type="number" id=readingNumericID name="readingNumeric"
+                   step="0.001" max="1.2" min="0.98" value="1.000"
+                   style="width: 60px" oninput="updateAllFromNumeric()">
+        </td>
+    </tr>
+    <tr>
+        <td>Sample Temperature:</td>
+        <td>
+            <input class=in type="range" id=tempSliderID name="tempSlider"
+                   step="1" max="100" min="32" value="68"
+                   oninput="updateAllFromSlider()">
+        </td>
+        <td>
+            <input class=in type="number" id=tempNumericID name="tempNumeric"
+                   step="1" max="100" min="32" value="68" style="width: 60px"
+                   oninput="updateAllFromNumeric()">
+        </td>
+    </tr>
+    <tr>
+        <td>Calibration Offset:</td>
+        <td>
+            <input class=in type="range" id=offsetSliderID name="offsetSlider" step="0.001" max="0.006" min="-0.006"
+                   value="0" oninput="updateAllFromSlider()">
+        </td>
+        <td>
+            <input class=in type="number" id=offsetNumericID name="offsetNumeric" step="0.001" max="0.006" min="-0.006"
+                   value="0" style="width: 60px"
+                   oninput="updateAllFromNumeric()">
+        </td>
+    </tr>
+    <tr>
+        <td>Calibration Temperature:</td>
+        <td>
+            <select id="calibrationTemperature" oninput="updateAllFromSlider()">
+                <option value=60>60°F</option>
+                <option value=68>68°F</option>
+            </select>
+        </td>
 
-<form oninput="sampleTempDisplay.value=sampleTemp.value">
-    <label>
-        <input type="range" name="sampleTemp" step="1" max="100" min="32" value="60">
-    </label>
-    <output name="sampleTempDisplay" for="sampleTemp" class="slider-label">60</output>
-    Sample Temperature
-</form>
+    </tr>
+    <tr>
+        <td><p class="output">Adjusted Gravity:</p></td>
+        <td>
+            <output class="output" id="adjustedGravity"><b>1.000</b></output>
+        </td>
 
-<label>
-    <select>
-        <option value="60">60°F</option>
-        <option value="68">68°F</option>
-    </select>
-</label>
-Calibration Temperature
-<br>
-<label>
-    <input type="number" min="-0.006" max="0.006" step="0.002" value="0.000">
-    Hydrometer Offset
-</label>
-<br>
-<b>
-<output name="correctedGravity">1.000</output>
-Corrected Gravity
-</b>
+    </tr>
+</table>
 
 </body>
 </html>

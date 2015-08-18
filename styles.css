@@ -1,17 +1,19 @@
 h1{
     font-family: Helvetica, serif;
+    font-size:22px;
 }
 
-.in{
-    color:yellow;
+table{
+    background-color:#eeeeee;
+    border: solid black 1px;
+    border-radius: 6px;
+    box-shadow: #cccccc 2px 2px 2px;
+}
 
+tr{
+    height: 30px;
 }
-input[type=range]{
-    background: black;
-    margin-right: 20px;
-    border: solid black 1px;
-}
-output{
-    border: solid black 1px;
-    width: 120px;
+
+.output{
+    font-weight: bold;
 }
